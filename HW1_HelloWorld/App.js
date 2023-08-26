@@ -4,13 +4,13 @@ import HomeScreen from "./src/screens/HomeScreen";
 
 const navigator = createStackNavigator(
   {
+    // Route names:
     Home: HomeScreen,
-    //Info: Info,
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "App",
+      title: "Jenny's App",
     },
   }
 );

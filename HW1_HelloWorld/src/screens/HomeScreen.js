@@ -1,19 +1,25 @@
+// Jenny Spicer / 4661 / August 17, 2023
 import React from "react";
 import { Text, StyleSheet, View, ScrollView, Image } from "react-native";
 
 const HomeScreen = () => {
-  //const myText = '𝓙𝓮𝓷𝓷𝔂\n\nI visited Mackinaw Island this summer in northern Michigan. No cars are allowed on the entire island! :)\n\nMy favorite mobile application is Love & Pies... it\'s a merge game that I believe is supposed to be a mystery about who burned a café down, but I don\'t care about the dialogue so I don\'t really know what\'s going on.';
-  const myHeader = '𝓙𝓮𝓷𝓷𝔂\n';
-  const myText = 'test\n\ntest\n\ntest';
+  const myHeader = '𝓙𝓮𝓷𝓷𝔂';
+  const myText1 = 'My boyfriend and I visited Mackinaw Island this summer in northern Michigan. No cars are allowed on the entire island! :)\n\n\n';
+  const myText2 = '\nMy current favorite mobile application is Love & Pies... It\'s a merge game that I believe is supposed to be a mystery about who burned a café down or something, but I skip the dialogue (as one does) so I don\'t really know what\'s going on lore-wise.'
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.frame}></View>
         <Text style={styles.header}>{myHeader}</Text>
-        <Text style={styles.text}>{myText}</Text>
+
+        <Image style={styles.logo} source={require('../../assets/images/summer/arch.png')}/>
+        <Text style={styles.text}>{myText1}</Text>
+
+        <Image style={styles.logo} source={require('../../assets/images/summer/merge.png')}/>
+        <Text style={styles.text}>{myText2}</Text>
+
         <View style={styles.frame}></View>
-        <Image style={styles.logo}
-                source={require('./favicon.png')}/>
-        <View style={styles.frame}></View>
+      <View style={styles.frame}></View>
     </ScrollView>
   );
 };
@@ -22,6 +28,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'darkseagreen',
     padding: 25,
+    //needed to be able to scroll all the way down:
+    alignItems : "center",
+    justifyContent : "center",
+    
   },
   frame: {
     backgroundColor: 'darkseagreen',
@@ -39,7 +49,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
     color: 'darkcyan',
     backgroundColor: 'darkseagreen',
-    fontSize: 40,
+    fontSize: 30,
+    textAlign: 'center',
     // fontWeight: 'bold',
     // fontStyle: 'italic',
     // textDecorationLine: 'underline',
@@ -47,11 +58,13 @@ const styles = StyleSheet.create({
     // textDecorationLine: 'underline line-through',
   },
   logo: {
-    height: '50%',
-    width: '50%',
+    //using percentages below won't allow photos to show
+    height: 400,
+    width: 400,
     alignSelf: 'center',
     resizeMode: 'contain',
-    borderRadius: 20,
+    //to make edges round:
+    //borderRadius: 20,
   }
 });
 
