@@ -1,50 +1,73 @@
 import React from "react";
 import { Text, StyleSheet, View, ScrollView, Image, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-// import Images from "assets/images";
 
 //Array of objects
 const pokemon = [
   //properties of objects are key:value pairs; here each object has one property
   { name: "Mareep",
     pokedex : 179,
-    //img : <Image source={require.('./favicon.png')}
-    //img : './mareep.png',
-    //img : <Image source={require('./mareep.png')}/>,
-    img : <Image style={{ height: '10%',
-                          width: '10%%',
-                          alignSelf: 'center',
+    img : <Image style={{ height: 180,
+                          width: 180,
                           resizeMode: 'contain',
-                          borderRadius: 20}}
+                          flexDirection: 'row',
+                          }}
                   source={require('../../assets/images/pokemon/mareep.png')}/>,
-    description : "\n   -> \n"
+    shiny : <Image style={{ height: 165,
+                    width: 165,
+                    resizeMode: 'contain',
+                    flexDirection: 'row',
+                    }}
+          source={require('../../assets/images/pokemon/shiny_mareep.png')}/>,
+    description : "\n╰➤ Evolves into Flaaffy level 15+\n"
   },
   { name: "Flaaffy",
     pokedex : 180,
-    //img : './flaaffy.png',
-    img : <Image style={{ height: '10%',
-                          width: '10%',
+    img : <Image style={{ height: 180,
+                          width: 180,
                           alignSelf: 'center',
                           resizeMode: 'contain',
                           borderRadius: 20}}
                   source={require('../../assets/images/pokemon/flaaffy.png')}/>,
-    description : "\n   -> \n"
+    shiny : <Image style={{ height: 175,
+                    width: 175,
+                    alignSelf: 'center',
+                    resizeMode: 'contain',
+                    borderRadius: 20}}
+          source={require('../../assets/images/pokemon/shiny_flaaffy.png')}/>,
+    description : "\n╰➤ Cutest shiny from this evolution line.\n"
   },
   { name: "Ampharos",
     pokedex : 181,
-    //img : './ampharos.png',
-    img : <Image style={{ height: '10%',
-                          width: '10%',
+    img : <Image style={{ height: 180,
+                          width: 180,
                           alignSelf: 'center',
                           resizeMode: 'contain',
                           borderRadius: 20}}
                   source={require('../../assets/images/pokemon/ampharos.png')}/>,
-    description : "\n   -> Ampharos is my favorite pokémon (well, that list keeps growing) which is why I chose it's evolution line to play with.\n"
+    shiny : <Image style={{ height: 165,
+                            width: 165,
+                            alignSelf: 'center',
+                            resizeMode: 'contain',
+                            borderRadius: 20}}
+                  source={require('../../assets/images/pokemon/shiny_ampharos.png')}/>,
+    description : "\n╰➤ Ampharos is one of my favorite pokémon :)\n"
   },
-  // { name: "Mega Ampharos",
-  //   img : './mega.png',
-  //   description : "Look at this beauty!"
-  // },
+  { name: "Mega Ampharos",
+    img : <Image style={{ height: 180,
+                          width: 180,
+                          alignSelf: 'center',
+                          resizeMode: 'contain',
+                          borderRadius: 20}}
+                  source={require('../../assets/images/pokemon/mega.png')}/>,
+    shiny : <Image style={{ height: 165,
+                            width: 165,
+                            alignSelf: 'center',
+                            resizeMode: 'contain',
+                            borderRadius: 20}}
+                  source={require('../../assets/images/pokemon/shiny_mega.png')}/>,
+    description : "\n╰➤ Beautiful :)\n"
+  },
 ];
 
 const ListScreen = () => {
@@ -54,32 +77,29 @@ const ListScreen = () => {
   
   return (
     <SafeAreaView style={styles.container}>
-        <FlatList data={pokemon} renderItem={({item}) => {return <Text style={styles.textStyle}> {item.img}{item.name} is #{item.pokedex} in the Pokédex. {item.description}</Text>}}/>
+        <FlatList data={pokemon} renderItem={({item}) => {return <Text style={styles.textStyle}>{item.img}{item.shiny}{item.name} is #{item.pokedex} in the Pokédex.{item.description}</Text>}}/>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor : "darkseagreen",
+    backgroundColor : "mediumblue",
     flex : 1
   },
   textStyle: {
-    //fontFamily : <pokemon> , <normal>
     fontSize : 40,
-    color: "gold",
-    //backgroundColor : "darkseagreen",
+    color: "goldenrod",
+    fontWeight: 'bold',
     marginHorizontal: 10,
-    //marginVertical: 50,
+    fontFamily : 'Avenir'
   },
-  picture: {
-    height: '50%',
-    width: '50%',
-    alignSelf: 'center',
-    resizeMode: 'contain',
-    
-  }
 });
 
-//TODO: //export default means
+//TODO: //export default means what exactly?
+//todo: 
+// find out how to align photos next to each other based on window width
+// find out how to style the images in the pokemon array (so no copy/paste)
+//find out how to style a header and then a title in the renderItem JSX return
+//find out how to add custom fonts
 export default ListScreen;

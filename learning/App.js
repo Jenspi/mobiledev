@@ -10,7 +10,7 @@ const navigator = createStackNavigator(
   {
     initialRouteName: "FlatL",
     defaultNavigationOptions: {
-      title: "Jenny's App",
+      title: "FlatList Final Challenge",
     },
   }
 );
