@@ -28,8 +28,6 @@ const ComponentsScreen = () => {
   );
 };
 
-
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'darkseagreen',

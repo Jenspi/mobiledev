@@ -3,6 +3,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import ListScreen from "./src/screens/ListScreen";
 import ComponentsScreen from "./src/screens/ComponentsScreen";
+import ImageScreen from "./src/screens/ImageScreen";
 //import ButtonsScreen from "./src/screens/ButtonsScreen";
 
 const navigator = createStackNavigator(
@@ -14,11 +15,12 @@ const navigator = createStackNavigator(
     //Learning section:
     FlatL: ListScreen,
     //Buttonz: ButtonsScreen,
+    Menu: ImageScreen
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "Learning Buttons",
+      title: "Learning Reusable Components",
     },
   }
 );

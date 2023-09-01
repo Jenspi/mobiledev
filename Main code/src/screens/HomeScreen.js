@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity, Button, View, Alert, SafeAreaView } from "react-native";
 
+//Reusable Component:
 const Separator = () => <View style={styles.separator}/>;
 
 //Learning about Interactive Components (Buttons)
@@ -25,15 +26,24 @@ const HomeScreen = (props) => {
           </View>
             <Separator/>
           <View>
-            <Text style={styles.text}>Currently unlocked:</Text>
+            <Text style={styles.text}>Currently locked:</Text>
               <Button
                 onPress={()=>{props.navigation.navigate("Components")}}
-                title="Week 3 Day 2 Content"
+                title="LOCKED"
                 disabled
+              />
+          </View>
+            <Separator/>
+          <View>
+            <Text style={styles.text}>Currently locked:</Text>
+              <Button
+                onPress={()=>{props.navigation.navigate("Menu")}}
+                title="Learning Reusable Components"
               />
           </View>
           </SafeAreaView>
 }
+//todo: add ImageScreen
 
 const styles = StyleSheet.create({
   container:{

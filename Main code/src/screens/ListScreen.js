@@ -14,11 +14,11 @@ const pokemon = [
                           }}
                   source={require('../../assets/images/pokemon/mareep.png')}/>,
     shiny : <Image style={{ height: 165,
-                    width: 165,
-                    resizeMode: 'contain',
-                    flexDirection: 'row',
-                    }}
-          source={require('../../assets/images/pokemon/shiny_mareep.png')}/>,
+                            width: 165,
+                            resizeMode: 'contain',
+                            flexDirection: 'row',
+                            }}
+                  source={require('../../assets/images/pokemon/shiny_mareep.png')}/>,
     description : "\n╰➤ Evolves into Flaaffy level 15+\n"
   },
   { name: "Flaaffy",
@@ -30,11 +30,11 @@ const pokemon = [
                           borderRadius: 20}}
                   source={require('../../assets/images/pokemon/flaaffy.png')}/>,
     shiny : <Image style={{ height: 175,
-                    width: 175,
-                    alignSelf: 'center',
-                    resizeMode: 'contain',
-                    borderRadius: 20}}
-          source={require('../../assets/images/pokemon/shiny_flaaffy.png')}/>,
+                            width: 175,
+                            alignSelf: 'center',
+                            resizeMode: 'contain',
+                            borderRadius: 20}}
+                  source={require('../../assets/images/pokemon/shiny_flaaffy.png')}/>,
     description : "\n╰➤ Cutest shiny from this evolution line.\n"
   },
   { name: "Ampharos",
@@ -50,7 +50,7 @@ const pokemon = [
                             alignSelf: 'center',
                             resizeMode: 'contain',
                             borderRadius: 20}}
-                  source={require('../../assets/images/pokemon/shiny_ampharos.png')}/>,
+                    source={require('../../assets/images/pokemon/shiny_ampharos.png')}/>,
     description : "\n╰➤ Ampharos is one of my favorite pokémon :)\n"
   },
   { name: "Mega Ampharos",
@@ -65,7 +65,7 @@ const pokemon = [
                             alignSelf: 'center',
                             resizeMode: 'contain',
                             borderRadius: 20}}
-                  source={require('../../assets/images/pokemon/shiny_mega.png')}/>,
+                    source={require('../../assets/images/pokemon/shiny_mega.png')}/>,
     description : "\n╰➤ Beautiful :)\n"
   },
 ];
