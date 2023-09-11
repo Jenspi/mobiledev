@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, View, ScrollView, Image, FlatList } from "react-native";
+import { Text, StyleSheet, Image, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //Array of objects

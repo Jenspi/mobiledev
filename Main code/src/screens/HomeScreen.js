@@ -4,14 +4,14 @@ import { Text, StyleSheet, TouchableOpacity, Button, View, Alert, SafeAreaView }
 //Reusable Component:
 const Separator = () => <View style={styles.separator}/>;
 
-//Learning about Interactive Components (Buttons)
-const HomeScreen = (props) => {
- //can use destructuring to say: const HomeScreen = ({navigation}) => {
+// const HomeScreen = (props) => {
+ //can use destructuring to say:
+ const HomeScreen = ({navigation}) => {
   return <SafeAreaView style={styles.container}>
           <View>
             <Text style={styles.text}>Click below to see my first homework:</Text>
               <Button
-                onPress={()=>{props.navigation.navigate("Components")
+                onPress={()=>{navigation.navigate("Components")
                               Alert.alert('Hello World!')}}
                 title="Homework 1: Hello World!"
                 color="mediumpurple"
@@ -20,7 +20,7 @@ const HomeScreen = (props) => {
             <Separator/>
           <View>
             <Text style={styles.text}>Click below to see my implementation of a FlatList:</Text>
-              <TouchableOpacity onPress={()=>{props.navigation.navigate("FlatL")}}>
+              <TouchableOpacity onPress={()=>{navigation.navigate("FlatL")}}>
                   <Text style={styles.buttonText}>Practicing FlatLists</Text>
               </TouchableOpacity>
           </View>
@@ -28,17 +28,26 @@ const HomeScreen = (props) => {
           <View>
             <Text style={styles.text}>Currently locked:</Text>
               <Button
-                onPress={()=>{props.navigation.navigate("Components")}}
+                onPress={()=>{navigation.navigate("Components")}}
                 title="LOCKED"
                 disabled
               />
           </View>
             <Separator/>
           <View>
-            <Text style={styles.text}>Currently locked:</Text>
+            <Text style={styles.text}>Work in progress:</Text>
               <Button
-                onPress={()=>{props.navigation.navigate("Menu")}}
+                onPress={()=>{navigation.navigate("Menu")}}
                 title="Learning Reusable Components"
+              />
+              <Button
+                onPress={()=>{navigation.navigate("Counter")}}
+                title="Learning State (Counter App)"
+              />
+              <Button
+                onPress={()=>{navigation.navigate("Color")}}
+                title="Learning State (Coloring App)"
+                disabled
               />
           </View>
           </SafeAreaView>
