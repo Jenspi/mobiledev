@@ -18,48 +18,25 @@ const randomRgb = () => {
 
 
 
-//Learning state/hooks
+//Learning state/hooks Part I
 const ColorScreen = () => {
 
     const [colors, setColors] = useState([]);
     console.log(colors);
-    console.log({colors});
 
     return (
-        // <View>
-        //     <Button title="Add color"
-        //     onPress={()=>{
-        //         setColors([...colors, randomRgb()]);
-        //     }}/>
-        //     <View style={{ width:100, height:100, backgroundColor: randomRgb()}}></View>
-        // </View>
         <SafeAreaView>
-            {/* <TouchableOpacity onPress={()=>{setColors([...colors, randomRgb()]);}}>
-                <Text style={styles.text}>ADD COLOR</Text>
-            </TouchableOpacity> */}
+            <Button title="ADD COLOR"
+             onPress={()=> {
+                setColors([...colors, randomRgb()]);
+            }}/>
 
-            {/* <Button style={{ textAlign : "center" }} title="Add color"
-                onPress={()=>{
-                    setColors([...colors, randomRgb()]);
-            }}/> */}
-  
-                <TouchableOpacity onPress={()=>{ setColors([...colors, randomRgb()]);
-                <FlatList data={colors} vertical={true} renderItem={element => {
-                    console.log(element);
-                    <View style={{ width:100, height:100, backgroundColor: {element}, resizeMode: 'contain', }}>
-                        <Text> Test</Text>
-                    </View>
-                }}/>}}>
-                    <Text style={ {textAlign : "center", fontSize:40} }>ADD COLOR {colors}</Text>
-                </TouchableOpacity>
-           
-                {/* <FlatList data={colors} vertical={true} renderItem={element => {
-                    console.log(element);
-                    <View style={{ width:100, height:100, backgroundColor: {element}, resizeMode: 'contain', }}>
-                        <Text> Test</Text>
-                    </View>
-                }}/> */}
-
+            <FlatList data={colors} renderItem={({item}) => {
+                return <View style={{ width:100, height:100, backgroundColor: item }}></View>;    
+            }}
+            keyExtractor={(color)=>{return color}}
+            horizontal
+            />
         </SafeAreaView>
     );
 }
@@ -67,13 +44,9 @@ const ColorScreen = () => {
 const styles = StyleSheet.create({
     blocks:{
         width:100,
-        height:100, 
-        // backgroundColor: randomRgb(),
+        height:100,
         resizeMode: 'contain',
-    },
-    // text:{
-    //     textAlign : "center",
-    // }
+    }
 });
 
 export default ColorScreen

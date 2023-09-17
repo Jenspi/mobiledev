@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
 
-//Learning state/hooks
+//Learning state/hooks Part I
 const CounterScreen = () => {
 
     //let counter = 0;//declares variable with local scope

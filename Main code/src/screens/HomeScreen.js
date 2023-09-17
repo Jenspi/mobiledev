@@ -42,12 +42,15 @@ const Separator = () => <View style={styles.separator}/>;
               />
               <Button
                 onPress={()=>{navigation.navigate("Counter")}}
-                title="Learning State (Counter App)"
+                title="Learning State Part I (Counter App)"
               />
               <Button
                 onPress={()=>{navigation.navigate("Color")}}
-                title="Learning State (Coloring App)"
-                disabled
+                title="Learning State Part I (Coloring App)"
+              />
+              <Button
+                onPress={()=>{navigation.navigate("AdvancedColor")}}
+                title="Learning State Part II (Advanced Coloring App)"
               />
           </View>
           </SafeAreaView>
