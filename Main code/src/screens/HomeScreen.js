@@ -56,6 +56,10 @@ const Separator = () => <View style={styles.separator}/>;
                 onPress={()=>{navigation.navigate("ReducedColor")}}
                 title="Learning State Part III (Advanced Coloring App using reducers)"
               />
+              <Button
+                onPress={()=>{navigation.navigate("TextScrn")}}
+                title="Learning State Part IV (Text Screen)"
+              />
           </View>
           </SafeAreaView>
 }

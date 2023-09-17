@@ -9,6 +9,7 @@ import ColorScreen from "./src/screens/ColorScreen";
 //import ButtonsScreen from "./src/screens/ButtonsScreen";
 import AdvancedColorScreen from "./src/screens/AdvancedColorScreen";
 import ReducedColorScreen from "./src/screens/ReducedColorScreen";
+import TextScreen from "./src/screens/TextScreen";
 
 const navigator = createStackNavigator(
   {
@@ -23,12 +24,13 @@ const navigator = createStackNavigator(
     Counter: CounterScreen,
     Color: ColorScreen,
     AdvancedColor : AdvancedColorScreen,
-    ReducedColor : ReducedColorScreen
+    ReducedColor : ReducedColorScreen,
+    TextScrn : TextScreen
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "Learning State Part III",
+      title: "Learning State Part IV",
     },
   }
 );
