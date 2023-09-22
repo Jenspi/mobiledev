@@ -60,8 +60,29 @@ const Separator = () => <View style={styles.separator}/>;
                 onPress={()=>{navigation.navigate("TextScrn")}}
                 title="Learning State Part IV (Text Screen)"
               />
+              <Button
+                onPress={()=>{navigation.navigate("Box")}}
+                title="Layout Part I: Box Model Layout"
+              />
+              <Button
+                onPress={()=>{navigation.navigate("Flex")}}
+                title="Layout Part I: Flex Box"
+              />
+              <Button
+                onPress={()=>{navigation.navigate("")}}
+                title="Layout Part II"
+                disabled
+              />
           </View>
-          </SafeAreaView>
+            <Separator/>
+          <View>
+            <Text style={styles.text}>HW2 stuff:</Text>
+              <Button
+                onPress={()=>{navigation.navigate("HW2Welcome")}}
+                title="HW2: Welcome Screen"
+              />
+          </View>
+        </SafeAreaView>
 }
 //todo: add ImageScreen
 

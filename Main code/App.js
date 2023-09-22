@@ -10,6 +10,12 @@ import ColorScreen from "./src/screens/ColorScreen";
 import AdvancedColorScreen from "./src/screens/AdvancedColorScreen";
 import ReducedColorScreen from "./src/screens/ReducedColorScreen";
 import TextScreen from "./src/screens/TextScreen";
+import BoxScreen from "./src/screens/BoxScreen";
+import FlexBox from "./src/screens/FlexBox";
+                //hw2 stuff:
+import HW2WelcomeScreen from "./src/screens/HW2WelcomeScreen";
+import HW2CharacterCreation from "./src/screens/HW2CharacterCreation";
+import HW2CombatScreen from "./src/screens/HW2CombatScreen";
 
 const navigator = createStackNavigator(
   {
@@ -25,7 +31,13 @@ const navigator = createStackNavigator(
     Color: ColorScreen,
     AdvancedColor : AdvancedColorScreen,
     ReducedColor : ReducedColorScreen,
-    TextScrn : TextScreen
+    TextScrn : TextScreen,
+    //Homework 2 stuff:
+    HW2Welcome : HW2WelcomeScreen,
+    HW2Create : HW2CharacterCreation,
+    HW2Combat : HW2CombatScreen,
+    Box : BoxScreen,
+    Flex : FlexBox
   },
   {
     initialRouteName: "Home",
