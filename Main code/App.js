@@ -42,7 +42,7 @@ const navigator = createStackNavigator(
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "Learning State Part IV",
+      title: "Learning Layout Part I",
     },
   }
 );
