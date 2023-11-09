@@ -7,13 +7,13 @@ const TextScreen = () => {
 
     return (
         <View>
-            <Text>Enter Name:</Text>
+            <Text style={styles.all}>Enter Name:</Text>
             <TextInput style={styles.input}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={(newText) => { setName(newText); }}
             />
-            <Text>You entered: {name}</Text>
+            <Text style={styles.all}>You entered: {name}</Text>
             {name.length < 1 ? <Text>WARNING: Name must be one character or longer!</Text> : null}
         </View>
     );
@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
         borderColor: "black",
         borderWidth:1
     },
+    all:{
+        fontSize : 20,
+    }
 });
 
 export default TextScreen

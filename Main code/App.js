@@ -14,7 +14,7 @@ import BoxScreen from "./src/screens/BoxScreen";
 import FlexBox from "./src/screens/FlexBox";
                 //hw2 stuff:
 import HW2WelcomeScreen from "./src/screens/HW2WelcomeScreen";
-import HW2CharacterCreation from "./src/screens/HW2CharacterCreation";
+import HW2GameScreen from "./src/screens/HW2GameScreen";
 import HW2CombatScreen from "./src/screens/HW2CombatScreen";
 
 const navigator = createStackNavigator(
@@ -34,15 +34,16 @@ const navigator = createStackNavigator(
     TextScrn : TextScreen,
     //Homework 2 stuff:
     HW2Welcome : HW2WelcomeScreen,
-    HW2Create : HW2CharacterCreation,
-    HW2Combat : HW2CombatScreen,
+    Game : HW2GameScreen,
+    //HW2Combat : HW2CombatScreen,
     Box : BoxScreen,
     Flex : FlexBox
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "Learning Layout Part I",
+      //title: "Homework 2",
+      //headerShown : false
     },
   }
 );

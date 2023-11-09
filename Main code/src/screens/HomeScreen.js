@@ -9,7 +9,7 @@ const Separator = () => <View style={styles.separator}/>;
  const HomeScreen = ({navigation}) => {
   return <SafeAreaView style={styles.container}>
           <View>
-            <Text style={styles.text}>Click below to see my first homework:</Text>
+            <Text style={styles.text}>My first homework:</Text>
               <Button
                 onPress={()=>{navigation.navigate("Components")
                               Alert.alert('Hello World!')}}
@@ -24,7 +24,7 @@ const Separator = () => <View style={styles.separator}/>;
                   <Text style={styles.buttonText}>Practicing FlatLists</Text>
               </TouchableOpacity>
           </View>
-            <Separator/>
+            {/* <Separator/>
           <View>
             <Text style={styles.text}>Currently locked:</Text>
               <Button
@@ -32,10 +32,10 @@ const Separator = () => <View style={styles.separator}/>;
                 title="LOCKED"
                 disabled
               />
-          </View>
+          </View> */}
             <Separator/>
           <View>
-            <Text style={styles.text}>Work in progress:</Text>
+            <Text style={styles.text}>Need to be styled:</Text>
               <Button
                 onPress={()=>{navigation.navigate("Menu")}}
                 title="Learning Reusable Components"
@@ -76,10 +76,19 @@ const Separator = () => <View style={styles.separator}/>;
           </View>
             <Separator/>
           <View>
-            <Text style={styles.text}>HW2 stuff:</Text>
+            <Text style={styles.text}>HW2:</Text>
               <Button
                 onPress={()=>{navigation.navigate("HW2Welcome")}}
                 title="HW2: Welcome Screen"
+              />
+          </View>
+            <Separator/>
+          <View>
+            <Text style={styles.text}>Our first complete app:</Text>
+              <Button
+                  onPress={()=>{navigation.navigate("")}}
+                  title="Yelp Remake, using Yelp's API, reusable hooks, Navigation"
+                  disabled
               />
           </View>
         </SafeAreaView>
