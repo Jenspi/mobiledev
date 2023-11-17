@@ -5,12 +5,10 @@ import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const IndexScreen = (props) => {
-
     //useContext gets the data from the passed in context, and stores the data in the repestive variable
-    const {state, addBlogPost, deleteBlogPost} = useContext(Context);
+    const {state, deleteBlogPost} = useContext(Context);
 
     return <View>
-        <Button title="Add Post" onPress={() => { addBlogPost() }} />
         <FlatList
             data = {state}
             keyExtractor={(blogPost) => {return blogPost.title}}
@@ -23,8 +21,7 @@ const IndexScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                         </TouchableOpacity>
-            }}
-        />
+            }}/>
     </View>
 }
 
