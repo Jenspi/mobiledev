@@ -14,6 +14,8 @@ const generateNewHero = (props) => {
     hero.title = firstNameList[Math.floor(Math.random() * firstNameList.length)] + " " +
                 lasNameList[Math.floor(Math.random() * lasNameList.length)];
 
+
+    //TODO: check if hero name already exists
     // while( props.map((hero.title)) ){
     //     hero.title = firstNameList[Math.floor(Math.random() * firstNameList.length)] + " " +
     //             lasNameList[Math.floor(Math.random() * lasNameList.length)];
@@ -25,9 +27,6 @@ const generateNewHero = (props) => {
     hero.currentHP = hero.maxHP;
     return hero;
 }
-
-// const [title, setTitle] = useState(props.initialValues.title);
-// const [content, setContent] = useState(props.initialValues.content);
 
 const blogReducer = (state, action) => {
     switch(action.type){
@@ -49,24 +48,24 @@ const blogReducer = (state, action) => {
                 return blogPost.id !== action.payload
             })
         case "edit_blogpost":
-            // return state.map((blogPost) => {
-            //     if(blogPost.id === action.payload.id){
-            //         return action.payload;
-            //     }
-            //     else{
-            //         return blogPost;
-            //     }
-            // });
-            return [{
-                id: action.payload.id,
-                gold: action.payload.gold-(action.payload.level*10),
-                title: action.payload.title,
-                level: action.payload.level+1,
-                power: action.payload.power+Math.floor(Math.random() * 5) + 1,
-                maxHP: action.payload.maxHP +Math.floor(Math.random() * 7)+3,
-                currentHP: action.payload.currentHP,
+            return state.map((blogPost) => {
+                if(blogPost.id === action.payload.id){
+                    return{
+                        id: action.payload.id,
+                        title: action.payload.title,
+                        
+                        power: action.payload.power + (Math.floor(Math.random() * 5) + 1),
+                        currentHP: action.payload.currentHP,
+                        maxHP: action.payload.maxHP + (Math.floor(Math.random() * 7)+3),
+                        
+                        gold: action.payload.gold - (action.payload.level*10),
+                        level: action.payload.level+1,
+                    }
                 }
-            ]
+                else{
+                    return blogPost;
+                }
+            });
         default:
             return state;
     }
@@ -92,9 +91,9 @@ const deleteBlogPost = (dispatch) => {
 }
 
 const editBlogPost = (dispatch) => {
-    return (id, title, level, power, currentHP, maxHP, gold, callback) => {
+    return (id, title, power, currentHP, maxHP, gold, level, callback) => {
         console.log(dispatch);
-        dispatch({type: "edit_blogpost", payload: {id:id, title:title, gold:gold, level:level, power:power, currentHP:currentHP, maxHP:maxHP} })
+        dispatch({type: "edit_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level} })
         //callback();
     }
 }

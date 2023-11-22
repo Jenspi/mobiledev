@@ -7,7 +7,7 @@ import NavBar from "../components/NavBar";
 
 const IndexScreen = (props) => {
     //useContext gets the data from the passed in context, and stores the data in the repestive variable
-    const {state, addBlogPost, deleteBlogPost} = useContext(Context);
+    const {state, addBlogPost, deleteBlogPost, editBlogPost} = useContext(Context);
 
     return <View style={styles.container}>
         <Text style={ {textAlign:"center", fontSize:30} }>Roster</Text>

@@ -21,38 +21,32 @@ const ShowScreen = (props) => {
     switch(scrn){
         case "INDEX_SCREEN":
                 return <View>
-                    <Text>Hero Details:</Text>
-                    {/* <Text>{blogPost.title}</Text>
-                    <Text>{blogPost.content}</Text> */}
+                    <Text style={{fontSize:30, paddingBottom: 10}}>Hero Details:</Text>
                     <Text>Name: {blogPost.title}</Text>
-                    <Text>Level: {blogPost.level}</Text>
-                    <Text>Health: {blogPost.currentHP}/{blogPost.maxHP}</Text>
-                    <Text>Power: {blogPost.power}</Text>
                     <Text>Gold: {blogPost.gold}</Text>
-                    {/* payload for editBlogPost:   {id:id, title:title, gold:gold, level:level, power:power, currentHP:currentHP, maxHP:maxHP} */}
+                    <Text>Level: {blogPost.level}</Text>
+                    <Text>Power: {blogPost.power}</Text>
+                    <Text>Health: {blogPost.currentHP}/{blogPost.maxHP}</Text>
+                    
+                    {/* payload for editBlogPost:   {id, title, power, currentHP, maxHP, gold, level} */}
                     <TouchableOpacity onPress={()=>{
-                                        editBlogPost(props.navigation.getParam("id"),blogPost.title,blogPost.gold, blogPost.level, blogPost.power, blogPost.currentHP, blogPost.maxHP);
+                                        editBlogPost(props.navigation.getParam("id"), blogPost.title, blogPost.power, blogPost.currentHP, blogPost.maxHP, blogPost.gold, blogPost.level);
                                         console.log(blogPost);}}>
-                                            <Text>LEVEL UP! ({blogPost.level * 10} GOLD)</Text>
+                                            <Text style={{color:"red", paddingVertical:10}}>LEVEL UP! ({blogPost.level*10} GOLD)</Text>
                     </TouchableOpacity>
+
                     <NavBar />
                 </View>
     case "ADVENTURE_SCREEN":
-                return <View>
-                    <Text>Who would you like to send?</Text>
-                    {/* <Text>{blogPost.title}</Text>
-                    <Text>{blogPost.content}</Text> */}
+        return <View>
+                    <Text style={{fontSize:30, paddingBottom: 10}}>Hero Details:</Text>
                     <Text>Name: {blogPost.title}</Text>
-                    <Text>Level: {blogPost.level}</Text>
-                    <Text>Health: {blogPost.currentHP}/{blogPost.maxHP}</Text>
-                    <Text>Power: {blogPost.power}</Text>
                     <Text>Gold: {blogPost.gold}</Text>
-                    {/* payload for editBlogPost:   {id:id, title:title, gold:gold, level:level, power:power, currentHP:currentHP, maxHP:maxHP} */}
-                    <TouchableOpacity onPress={()=>{
-                                        editBlogPost(props.navigation.getParam("id"),blogPost.title,blogPost.gold, blogPost.level, blogPost.power, blogPost.currentHP, blogPost.maxHP);
-                                        console.log(blogPost);}}>
-                                            <Text>LEVEL UP! ({blogPost.level * 10} GOLD)</Text>
-                    </TouchableOpacity>
+                    <Text>Level: {blogPost.level}</Text>
+                    <Text>Power: {blogPost.power}</Text>
+                    <Text>Health: {blogPost.currentHP}/{blogPost.maxHP}</Text>
+                    
+
                     <NavBar />
                 </View>
     default:
