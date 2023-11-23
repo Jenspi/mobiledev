@@ -5,24 +5,51 @@ import { Feather } from "@expo/vector-icons";
 import NavBar from "../components/NavBar";
 
 const AdventureScreen = (props) => {
-    const { state } = useContext(Context);
+    const { state, updateBlogPost } = useContext(Context);
 
     const blogID = props.navigation.getParam("id");
 
     const blogPost = state.find((blogPost) => {
         return blogID === blogPost.id;
     })
+    // console.log(props.navigation.params);
+    // const challengeName=props.navigation.getParam("name");
+    // const challengeLevel = props.navigation.getParam("challengeLevel");
+    const generateAdventure = () =>{
+        let adventure = {};
 
+        const adjectives = [];
+        const locations = [];
+        const qualifiers = [];
+
+        adventure.name = (`ADVENTURE NAME`);
+        //adventure.challengeLevel = Math.floor( Math.random()*10 )+1;
+        adventure.challengeLevel = 0;
+
+        return adventure;
+    }
+
+    const gen = generateAdventure();
+    var win;
+    var text0= "i win!"
+    var text1="i lose!"
+    var outcome;
     return <View>
         <Text style={ {textAlign:"center", fontSize:30} }>Current Adventure: </Text>
-        <Text>Challenege level X. Who would you like to send?</Text>
+        <Text>{gen.name}</Text>
+        <Text>{gen.challengeLevel}</Text>
+        <Text>Who would you like to send?</Text>
         <FlatList
             data = {state}
             keyExtractor={(blogPost) => {return blogPost.title}}
             renderItem={ ({item}) => {
-                return <TouchableOpacity onPress={ () => {props.navigation.navigate("Show", {id: item.id, scrn:"ADVENTURE_SCREEN"})}}>
+                return <TouchableOpacity onPress={ () => {
+                    {item.power < gen.challengeLevel ? win=0 : win=1};
+                    updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level);
+                    { win ? props.navigation.navigate("Show", {id: item.id, text:text0, scrn: "ADVENTURE_SCREEN"}) : props.navigation.navigate("Show", {id: item.id, text:text1, scrn: "ADVENTURE_SCREEN"}) };
+                    }}>
                             <View style={styles.row}>
-                                <Text style={styles.title}>{item.title} -- {item.id}</Text>
+                                <Text style={styles.title}>Hero: {item.title}-- Level {item.level}</Text>
                             </View>
                         </TouchableOpacity>
             }}/>

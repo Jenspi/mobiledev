@@ -9,6 +9,7 @@ const ShowScreen = (props) => {
 
     const blogID = props.navigation.getParam("id");
     const scrn = props.navigation.getParam("scrn");
+    const message = props.navigation.getParam("text");
     console.log(props.navigation);
 
     const blogPost = state.find((blogPost) => {
@@ -39,6 +40,7 @@ const ShowScreen = (props) => {
                 </View>
     case "ADVENTURE_SCREEN":
         return <View>
+                    <Text>{message}</Text>
                     <Text style={{fontSize:30, paddingBottom: 10}}>Hero Details:</Text>
                     <Text>Name: {blogPost.title}</Text>
                     <Text>Gold: {blogPost.gold}</Text>
