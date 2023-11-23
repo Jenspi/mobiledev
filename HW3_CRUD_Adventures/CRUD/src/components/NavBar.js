@@ -4,10 +4,10 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { withNavigation } from "react-navigation";
 
 const NavBar = (props) => {
-
     return <View style={{flexDirection:"row", fonstSize:20, justifyContent:"space-evenly", height:50}}>
         <TouchableOpacity onPress={ () => {props.navigation.navigate("Index")}}><Text>Roster</Text></TouchableOpacity>
         <TouchableOpacity onPress={ () => {props.navigation.navigate("Adventure")}}><Text>Adventures</Text></TouchableOpacity>
+        
     </View>
 }
 
