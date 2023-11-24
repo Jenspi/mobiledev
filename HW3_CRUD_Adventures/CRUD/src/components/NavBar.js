@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         //backgroundColor:"#6023B3",
         backgroundColor:"#5116A1",
         alignItems:"center",
-        justifyContent:"space-evenly",
+        //justifyContent:"space-evenly",
+        justifyContent:"space-between"
         //alignContent:"stretch"
     },
     label: {
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
         // marginLeft: 5,
         //margin:20,
         marginVertical:5,
-        marginHorizontal:60
+        marginHorizontal:59
     },
     button: {
         borderWidth: 3,
