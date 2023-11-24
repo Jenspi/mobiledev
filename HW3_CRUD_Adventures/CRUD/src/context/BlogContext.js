@@ -8,7 +8,6 @@ const generateNewHero = (props) => {
 
     let firstNameList = ["Silvertoes", "Shadowful", "Shadowreek", "Toadstare", "Dirth", "Goldtouch", "Sheik", "Weirdwolf",
     "Sheeppusher", "Prowl", "Ramhorn", "Skullcast", "Sandstorm", "Wartbug"];
-
     let lasNameList = ["Huse", "Ice", "Horsebaler", "Hogpusher", "Souldancer", "Fatman", "Cloudtrance", "Ultra-Hit"];
 
     hero.title = firstNameList[Math.floor(Math.random() * firstNameList.length)] + " " +
