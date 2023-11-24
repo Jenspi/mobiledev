@@ -1,30 +1,31 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
-import {Context} from "../context/BlogContext";
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { Context } from "../context/BlogContext";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import NavBar from "../components/NavBar";
 
 const IndexScreen = (props) => {
     //useContext gets the data from the passed in context, and stores the data in the repestive variable
-    const {state, addBlogPost, deleteBlogPost, editBlogPost} = useContext(Context);
+    const {state, addBlogPost, deleteBlogPost} = useContext(Context);
 
     return <View style={styles.container}>
-        <Text style={ {textAlign:"center", fontSize:30} }>Roster</Text>
+        <Text style={styles.title}>Hero Roster</Text>
         <FlatList
             data = {state}
             keyExtractor={(blogPost) => { return blogPost.id }}
             renderItem={ ({item}) => {
                 return <TouchableOpacity onPress={ () => {props.navigation.navigate("Show", {id: item.id,scrn:"INDEX_SCREEN"})}}>
-                            <View style={styles.button}>
-                                <Text style={styles.title}>{item.title} ➻ Hero Level {item.level}, {item.currentHP}/{item.maxHP}HP, Power Level {item.power} ➻ {item.gold} Gold</Text>
+                            <View style={styles.buttonHero}>
+                                <Text style={styles.buttonDescription}>{item.title} ➻ Hero Level {item.level}{'\n'}{item.currentHP}/{item.maxHP}HP, Power Level {item.power} ➻ {item.gold} Gold</Text>
                                 <TouchableOpacity onPress={() => {deleteBlogPost(item.id)}}>
-                                    <AntDesign style={styles.icon} name="deleteuser"/>
+                                    <AntDesign style={styles.deleteHeroIcon} name="deleteuser"/>
                                 </TouchableOpacity>
                             </View>
                         </TouchableOpacity>
-            }}/>
-        <TouchableOpacity style={{paddingVertical: 5, paddingHorizontal: 5, borderBottomWidth:3, borderEndWidth: 3, borderBottomColor:"#F279A6", borderEndColor:"#F279A6",  margin:5, borderColor: "#E2E96D", backgroundColor: "#E2E96D",height:30, width:150,alignSelf:"center",}} onPress={ () => {addBlogPost()}} ><Text style={ {textAlign:"center" } }>Hire New Hero</Text></TouchableOpacity>
+        }}/>
+            {/* Would like to figure out how to make the line transparent and button pressable just on the button, not the entire line */}
+            <TouchableOpacity style={styles.addButton} onPress={ () => {addBlogPost()}} ><Text style={ {fontWeight:500,textAlign:"center", fontSize:15, fontStyle: "italic" } }>Hire New Hero</Text></TouchableOpacity>
             <NavBar />
     </View>
 }
@@ -41,52 +42,86 @@ const IndexScreen = (props) => {
 // }
 
 const styles = StyleSheet.create({
-    assassinsCreedContainer:{
-        //https://color.adobe.com/trends/Game-design
-        flex:1,
-        
-    },
+    /* Color palette:
+    *   "Sweetie Magic: Merge Spell - Game Concept" --- https://color.adobe.com/trends/Game-design
+    *
+    *   #E279A6 --- Pink Carnation (darker pink)
+    *   #F279DE --- Lián Hóng Lotus Pink (lighter pink)
+    *   #6C30BE --- Purple Spot (darker purple)
+    *   #865FD9 --- Gloomy Purple (lighter purple)
+    *   #E2E96D --- Vanilla Pudding (yellow)
+    */
     container:{
         flex:1,
-        //backgroundColor:"#865FD9"
-        //backgroundColor:"white"
-
         backgroundColor:"#6C30BE"
-        //backgroundColor:"#865FD9"
     },
-    button : {
+    buttonHero : {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingVertical: 5,
         paddingHorizontal: 5,
         borderBottomWidth:3,
         borderEndWidth: 3,
-        //borderWidth: 3,
         borderBottomColor:"#E2E96D",
         borderEndColor:"#E2E96D",
         margin:5,
-        //borderColor: "#F279DE",
         borderColor: "#E279A6",
         backgroundColor: "#E279A6",
-        //alignItems:"center"
+        //edges of button:
+        borderTopWidth:3,
+        borderTopColor: "#F279A6",
+        
+        borderLeftWidth:3,
+        borderLeftColor:"F279A6",
+
+        borderBottomWidth:5,
+        borderBottomColor:"#E2E96D",
+
+        borderEndWidth: 5,
+        borderEndColor:"#E2E96D",
     },
-    title:{
+    addButton:{
+        paddingVertical: 5,
+        paddingHorizontal: 5, 
+        margin:5, 
+        backgroundColor: "#E2E96D",
+        height:35, 
+        width:150,
+        alignSelf:"center",
+        //edges of button:
+        borderTopWidth:3,
+        borderTopColor: "#E2E96D",
+        
+        borderLeftWidth:3,
+        borderLeftColor:"#E2E96D",
+
+        borderBottomWidth:5,
+        borderBottomColor:"#F279A6",
+
+        borderEndWidth: 5,
+        borderEndColor:"#F279A6",
+    },
+    buttonDescription:{
         fontSize:15,
         fontStyle: "italic",
-
-        //testing:
-        //borderWidth:1,
-        //borderColor:"red",
         flex:1,
-        //alignItems:"center"
+        padding:5
     },
-    icon:{
+    deleteHeroIcon:{
         fontSize: 25,
-        //testing:
         backgroundColor:"#E2E96D",
         borderWidth:1,
-        //borderColor:"red",
         flex:1,
+    },
+    title:{
+        textAlign:"center", 
+        fontSize:30,
+        color:"#E279A6", 
+        textShadowColor:"#E2E96D", 
+        textShadowOffset: {width:2, height:1}, 
+        textShadowRadius:1, 
+        marginVertical:3, 
+        textDecorationLine:"underline",
     }
 });
 
