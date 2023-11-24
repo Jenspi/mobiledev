@@ -50,22 +50,76 @@ const blogReducer = (state, action) => {
         case "edit_blogpost":
             return state.map((blogPost) => {
                 if(blogPost.id === action.payload.id){
+                    var randomUpgradeAddition = Math.floor( (action.payload.maxHP/3) ) ;
+                    var randomMaxHealth = Math.floor(Math.random() * 7) + 3;
+                    if(action.payload.currentHP + randomUpgradeAddition >= action.payload.maxHP + randomMaxHealth){
+                        //if currentHealth is going to be updated to a number greater than maxHP
+                        //just return max
+                        randomUpgradeAddition = randomMaxHealth;
+                    }
+                    
                     return{
                         id: action.payload.id,
                         title: action.payload.title,
                         
-                        power: action.payload.power + (Math.floor(Math.random() * 5) + 1),
-                        currentHP: action.payload.currentHP,
-                        maxHP: action.payload.maxHP + (Math.floor(Math.random() * 7)+3),
+                        power: action.payload.power + ( Math.floor(Math.random() * 5)+1 ),
+                        currentHP: action.payload.currentHP + randomUpgradeAddition,
+                        maxHP: action.payload.maxHP + randomMaxHealth,
                         
-                        gold: action.payload.gold - (action.payload.level*10),
-                        level: action.payload.level+1,
+                        gold: action.payload.gold - ( action.payload.level*10 ),
+                        level: action.payload.level + 1,
                     }
                 }
                 else{
                     return blogPost;
                 }
             });
+        case "update_blogpost":
+            return state.map((blogPost) => {
+                if(blogPost.id === action.payload.id){
+                    
+                    console.log(blogPost);
+                    
+                    if(action.payload.win ===1){
+                        //win
+                        return{
+                            id: action.payload.id,
+                            title: action.payload.title,
+                            power: action.payload.power,
+                            // currentHP: action.payload.currentHP - Math.floor(Math.random() * 5)+1,
+                            currentHP:99999999,
+                            maxHP: action.payload.maxHP,
+                            gold: action.payload.gold + (Math.floor(Math.random() * 5)+1),//- for lose
+                            // gold: 2222222,
+                            level: action.payload.level
+                        }
+                    }
+                    //if(action.payload.currentHP <=0 || action.payload.gold <=0){
+                    //else if(!action.payload.win){
+                    else{
+                        //lose
+                        //losing is determined by negative currentHP & gold (as sent in through updateBlogPost)
+                        //so we need to make those positive again
+                        return{
+                            id: action.payload.id,
+                            title: action.payload.title,
+                            power: action.payload.power,
+                            // currentHP: (action.payload.currentHP*-1) - Math.floor(Math.random() * 5)+2,
+                            // maxHP: action.payload.maxHP,
+                            gold: (action.payload.gold*-1) - (Math.floor(Math.random() * 5)+3),
+                            currentHP:666666,
+                            maxHP: action.payload.maxHP,
+                            // gold: action.payload.gold-Math.floor(Math.random() * 5)+1,//- for lose
+                            // gold: 11111,
+                            level: action.payload.level
+                        }
+                    }
+                }
+                else{
+                    return blogPost;
+                }
+            });
+            
         default:
             return state;
     }
@@ -93,10 +147,18 @@ const deleteBlogPost = (dispatch) => {
 const editBlogPost = (dispatch) => {
     return (id, title, power, currentHP, maxHP, gold, level, callback) => {
         console.log(dispatch);
-        dispatch({type: "edit_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level} })
+        dispatch({type: "edit_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level, win:win} })
+        //callback();
+    }
+}
+
+const updateBlogPost = (dispatch) => {
+    return (id, title, power, currentHP, maxHP, gold, level, win, callback) => {
+        console.log(dispatch);
+        dispatch({type: "update_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level, win:win} })
         //callback();
     }
 }
 
 //allow other files in our code to access Context and Provider
-export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost}, [ { id:13, title:"Jenny", level:1, health:100, power:20, gold: 100} ]);
+export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost, updateBlogPost:updateBlogPost}, [ { id:13, title:"WINNING HERO", level:1, health:100, power:20, gold: 100}, { id:16, title:"LOSING HERO", level:1, health:100, power:0, gold: 100} ]);

@@ -24,7 +24,7 @@ const AdventureScreen = (props) => {
 
         adventure.name = (`ADVENTURE NAME`);
         //adventure.challengeLevel = Math.floor( Math.random()*10 )+1;
-        adventure.challengeLevel = 0;
+        adventure.challengeLevel = 1;
 
         return adventure;
     }
@@ -33,7 +33,6 @@ const AdventureScreen = (props) => {
     var win;
     var text0= "i win!"
     var text1="i lose!"
-    var outcome;
     return <View>
         <Text style={ {textAlign:"center", fontSize:30} }>Current Adventure: </Text>
         <Text>{gen.name}</Text>
@@ -45,7 +44,8 @@ const AdventureScreen = (props) => {
             renderItem={ ({item}) => {
                 return <TouchableOpacity onPress={ () => {
                     {item.power < gen.challengeLevel ? win=0 : win=1};
-                    updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level);
+                    {item.power < gen.challengeLevel ? updateBlogPost(item.id, item.title, item.power, item.currentHP*-1, item.maxHP, item.gold*-1, item.level, {win}) : updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, {win})};
+                    
                     { win ? props.navigation.navigate("Show", {id: item.id, text:text0, scrn: "ADVENTURE_SCREEN"}) : props.navigation.navigate("Show", {id: item.id, text:text1, scrn: "ADVENTURE_SCREEN"}) };
                     }}>
                             <View style={styles.row}>

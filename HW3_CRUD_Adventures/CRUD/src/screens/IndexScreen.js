@@ -16,15 +16,15 @@ const IndexScreen = (props) => {
             keyExtractor={(blogPost) => { return blogPost.id }}
             renderItem={ ({item}) => {
                 return <TouchableOpacity onPress={ () => {props.navigation.navigate("Show", {id: item.id,scrn:"INDEX_SCREEN"})}}>
-                            <View style={styles.row}>
-                                <Text style={styles.title}>Name: {item.title} Level: {item.level} Health: {item.health} Power: {item.power} -- Gold: {item.gold}</Text>
-                                <TouchableOpacity style={{backgroundColor:"red"}} onPress={() => {deleteBlogPost(item.id)}}>
+                            <View style={styles.button}>
+                                <Text style={styles.title}>{item.title} ➻ Hero Level {item.level}, {item.currentHP}/{item.maxHP}HP, Power Level {item.power} ➻ {item.gold} Gold</Text>
+                                <TouchableOpacity onPress={() => {deleteBlogPost(item.id)}}>
                                     <AntDesign style={styles.icon} name="deleteuser"/>
                                 </TouchableOpacity>
                             </View>
                         </TouchableOpacity>
             }}/>
-        <TouchableOpacity style={{}} onPress={ () => {addBlogPost()}} ><Text style={ {textAlign:"center", color:"blue", backgroundColor:"#F279A6", height:30, } }>Hire New Hero</Text></TouchableOpacity>
+        <TouchableOpacity style={{paddingVertical: 5, paddingHorizontal: 5, borderBottomWidth:3, borderEndWidth: 3, borderBottomColor:"#F279A6", borderEndColor:"#F279A6",  margin:5, borderColor: "#E2E96D", backgroundColor: "#E2E96D",height:30, width:150,alignSelf:"center",}} onPress={ () => {addBlogPost()}} ><Text style={ {textAlign:"center" } }>Hire New Hero</Text></TouchableOpacity>
             <NavBar />
     </View>
 }
@@ -41,37 +41,51 @@ const IndexScreen = (props) => {
 // }
 
 const styles = StyleSheet.create({
+    assassinsCreedContainer:{
+        //https://color.adobe.com/trends/Game-design
+        flex:1,
+        
+    },
     container:{
         flex:1,
-        backgroundColor:"mistyrose"
+        //backgroundColor:"#865FD9"
+        //backgroundColor:"white"
+
+        backgroundColor:"#6C30BE"
+        //backgroundColor:"#865FD9"
     },
-    row : {
+    button : {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingVertical: 5,
         paddingHorizontal: 5,
-        borderWidth: 3,
-        borderBottomColor:"black",
-        borderEndColor:"black",
+        borderBottomWidth:3,
+        borderEndWidth: 3,
+        //borderWidth: 3,
+        borderBottomColor:"#E2E96D",
+        borderEndColor:"#E2E96D",
         margin:5,
-        borderColor: "grey",
-        backgroundColor: "pink",
+        //borderColor: "#F279DE",
+        borderColor: "#E279A6",
+        backgroundColor: "#E279A6",
+        //alignItems:"center"
     },
     title:{
         fontSize:15,
         fontStyle: "italic",
 
         //testing:
-        borderWidth:1,
-        borderColor:"red",
+        //borderWidth:1,
+        //borderColor:"red",
         flex:1,
+        //alignItems:"center"
     },
     icon:{
         fontSize: 25,
-        
         //testing:
+        backgroundColor:"#E2E96D",
         borderWidth:1,
-        borderColor:"red",
+        //borderColor:"red",
         flex:1,
     }
 });
