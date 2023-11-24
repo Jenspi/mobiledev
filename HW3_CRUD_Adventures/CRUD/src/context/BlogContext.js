@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useContext } from "react";
 import createDataContext from "./createDataContext";
 
 //generator by Dr. Ben Samuel, modified by Jenny Spicer
@@ -16,7 +16,7 @@ const generateNewHero = (props) => {
 
 
     //TODO: check if hero name already exists
-    // while( props.map((hero.title)) ){
+    // while( typeof hero.title === 'undefined' ){
     //     hero.title = firstNameList[Math.floor(Math.random() * firstNameList.length)] + " " +
     //             lasNameList[Math.floor(Math.random() * lasNameList.length)];
     // }
@@ -50,24 +50,27 @@ const blogReducer = (state, action) => {
         case "edit_blogpost":
             return state.map((blogPost) => {
                 if(blogPost.id === action.payload.id){
-                    var randomUpgradeAddition = Math.floor( (action.payload.maxHP/3) ) ;
-                    var randomMaxHealth = Math.floor(Math.random() * 7) + 3;
-                    if(action.payload.currentHP + randomUpgradeAddition >= action.payload.maxHP + randomMaxHealth){
-                        //if currentHealth is going to be updated to a number greater than maxHP
-                        //just return max
-                        randomUpgradeAddition = randomMaxHealth;
+                    if(blogPost.gold >= blogPost.level*10){
+                        var randomUpgradeAddition = Math.floor( (action.payload.maxHP/3) ) ;
+                        var randomMaxHealth = Math.floor(Math.random() * 7) + 3;
+                        if(action.payload.currentHP + randomUpgradeAddition >= action.payload.maxHP + randomMaxHealth){
+                            //if currentHealth is going to be updated to a number greater than maxHP
+                            //just return max
+                            randomUpgradeAddition = randomMaxHealth;
+                        }
+                        return{
+                            id: action.payload.id,
+                            title: action.payload.title,
+                            power: action.payload.power + ( Math.floor(Math.random() * 5)+1 ),
+                            currentHP: action.payload.currentHP + randomUpgradeAddition,
+                            maxHP: action.payload.maxHP + randomMaxHealth,
+                            gold: action.payload.gold - ( action.payload.level*10 ),
+                            level: action.payload.level + 1,
+                        }
                     }
-                    
-                    return{
-                        id: action.payload.id,
-                        title: action.payload.title,
-                        
-                        power: action.payload.power + ( Math.floor(Math.random() * 5)+1 ),
-                        currentHP: action.payload.currentHP + randomUpgradeAddition,
-                        maxHP: action.payload.maxHP + randomMaxHealth,
-                        
-                        gold: action.payload.gold - ( action.payload.level*10 ),
-                        level: action.payload.level + 1,
+                    else{
+                        console.log("Not Enough Gold");
+                        return blogPost;
                     }
                 }
                 else{
@@ -77,40 +80,32 @@ const blogReducer = (state, action) => {
         case "update_blogpost":
             return state.map((blogPost) => {
                 if(blogPost.id === action.payload.id){
-                    
-                    console.log(blogPost);
-                    
-                    if(action.payload.win ===1){
-                        //win
+                    //console.log(blogPost);
+                    //console.log(blogPost.win);
+                    const small = Math.floor(Math.random() * 5)+1;
+                    const large = Math.floor(Math.random() * 8)+1;
+
+                    if(blogPost.win ===1){
+                        // hero wins
                         return{
                             id: action.payload.id,
                             title: action.payload.title,
                             power: action.payload.power,
-                            // currentHP: action.payload.currentHP - Math.floor(Math.random() * 5)+1,
-                            currentHP:99999999,
+                            currentHP: action.payload.currentHP,
                             maxHP: action.payload.maxHP,
-                            gold: action.payload.gold + (Math.floor(Math.random() * 5)+1),//- for lose
-                            // gold: 2222222,
+                            gold: action.payload.gold + large,
                             level: action.payload.level
                         }
                     }
-                    //if(action.payload.currentHP <=0 || action.payload.gold <=0){
-                    //else if(!action.payload.win){
-                    else{
-                        //lose
-                        //losing is determined by negative currentHP & gold (as sent in through updateBlogPost)
-                        //so we need to make those positive again
+                    else if(blogPost.win ===0){
+                        // hero loses
                         return{
                             id: action.payload.id,
                             title: action.payload.title,
                             power: action.payload.power,
-                            // currentHP: (action.payload.currentHP*-1) - Math.floor(Math.random() * 5)+2,
-                            // maxHP: action.payload.maxHP,
-                            gold: (action.payload.gold*-1) - (Math.floor(Math.random() * 5)+3),
-                            currentHP:666666,
+                            currentHP: action.payload.currentHP - large,
+                            gold: action.payload.gold + small,
                             maxHP: action.payload.maxHP,
-                            // gold: action.payload.gold-Math.floor(Math.random() * 5)+1,//- for lose
-                            // gold: 11111,
                             level: action.payload.level
                         }
                     }
@@ -147,7 +142,7 @@ const deleteBlogPost = (dispatch) => {
 const editBlogPost = (dispatch) => {
     return (id, title, power, currentHP, maxHP, gold, level, callback) => {
         console.log(dispatch);
-        dispatch({type: "edit_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level, win:win} })
+        dispatch({type: "edit_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level} })
         //callback();
     }
 }
@@ -161,4 +156,4 @@ const updateBlogPost = (dispatch) => {
 }
 
 //allow other files in our code to access Context and Provider
-export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost, updateBlogPost:updateBlogPost}, [ { id:13, title:"WINNING HERO", level:1, health:100, power:20, gold: 100}, { id:16, title:"LOSING HERO", level:1, health:100, power:0, gold: 100} ]);
+export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost, updateBlogPost:updateBlogPost}, [ { id:13, title:"WINNING HERO", level:1, currentHP:100, power:20, gold: 100}, { id:16, title:"LOSING HERO", level:0, currentHP:20, power:0, gold: 20} ]);

@@ -1,7 +1,6 @@
 import React, {useContext} from "react";
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import {Context} from "../context/BlogContext";
-import { Feather } from "@expo/vector-icons";
 import NavBar from "../components/NavBar";
 
 const AdventureScreen = (props) => {
@@ -12,32 +11,34 @@ const AdventureScreen = (props) => {
     const blogPost = state.find((blogPost) => {
         return blogID === blogPost.id;
     })
-    // console.log(props.navigation.params);
-    // const challengeName=props.navigation.getParam("name");
-    // const challengeLevel = props.navigation.getParam("challengeLevel");
+
     const generateAdventure = () =>{
         let adventure = {};
+        const adjectives = ["vengeful", "ill-fated", "tiny", "rotten", "rebellious", "cautious", "probable", "internal", "snotty", "squalid", "unwieldy", "earthy", "furtive", "creepy", "undesirable", "cowardly", "grouchy"];
+        const locations = ["lake", "swamp", "sector", "depths", "mall", "community", "estate", "sanctuary", "purgatory", "library"];
+        const qualifiers = ["Unlikeliness", "Improbability", "Doubtfulness", "Possibility", "Probability", "Unlikeliness", "Indecisiveness", "Apparentness"];
 
-        const adjectives = [];
-        const locations = [];
-        const qualifiers = [];
+        adventure.name = "The "+ adjectives[Math.floor(Math.random() * adjectives.length)] + " " +
+                                    locations[Math.floor(Math.random() * locations.length)] + " of " +
+                                    qualifiers[Math.floor(Math.random() * qualifiers.length)];
 
-        adventure.name = (`ADVENTURE NAME`);
-        //adventure.challengeLevel = Math.floor( Math.random()*10 )+1;
-        adventure.challengeLevel = 1;
+        adventure.challengeLevel = Math.floor(Math.random()*10)+1;
 
         return adventure;
+
+        // adjectives source --- https://www.randomlists.com/random-adjectives
+        // locations source --- https://capitalizemytitle.com/random-noun-generator/
+        // qualifiers source --- https://klwightman.com/2018/09/24/qualifiers-intensifiers-grammar/
     }
 
     const gen = generateAdventure();
-    var win;
-    var text0= "i win!"
-    var text1="i lose!"
+    const winningQuotes= ["Piece of cake, your hero won!", "Your hero won!", "Your hero came out victorious!", "Nothing can beat your hero!"];
+    const losingQuotes= ["Your hero lost!", "Your hero failed.", "Your hero was no match for the enemy.."];
     return <View style={styles.container}>
         <Text style={ styles.title }>Current Adventure:</Text>
         <View style={styles.body}>
-            <Text style={{fontWeight:"bold"}}>{gen.name}</Text>
-            <Text>Challenge Level: {gen.challengeLevel}</Text>
+            <Text style={{fontWeight:"bold", alignSelf:"center", alignItems:"center", textAlign:"center",paddingTop:4}}>{gen.name}</Text>
+            <Text style={{alignSelf:"center", alignItems:"center", textAlign:"center", paddingTop:4}}>Challenge Level: {gen.challengeLevel}</Text>
         </View>
         <Text style={{fontSize:15, color:"white", paddingLeft:5}}>➻ Who would you like to send?</Text>
 
@@ -45,18 +46,19 @@ const AdventureScreen = (props) => {
             data = {state}
             keyExtractor={(blogPost) => {return blogPost.title}}
             renderItem={ ({item}) => {
-                return <TouchableOpacity onPress={ () => {
-                        {item.power < gen.challengeLevel ? win=0 : win=1};
-                        {item.power < gen.challengeLevel ? updateBlogPost(item.id, item.title, item.power, item.currentHP*-1, item.maxHP, item.gold*-1, item.level, {win}) : updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, {win})};
-                        
-                        { win ? props.navigation.navigate("Show", {id: item.id, text:text0, scrn: "ADVENTURE_SCREEN"}) : props.navigation.navigate("Show", {id: item.id, text:text1, scrn: "ADVENTURE_SCREEN"}) };
-                        }}>
-                        <View style={styles.buttonHero}>
-                        <Text style={styles.buttonDescription}>{item.title} ➻ Hero Level {item.level}{'\n'}{item.currentHP}/{item.maxHP}HP, Power Level {item.power} ➻ {item.gold} Gold</Text>
-                        </View>
-                    </TouchableOpacity>
-                }}/>
-
+                {/* So dead heroes are not shown */}
+                if(item.currentHP > 0)
+                    return <TouchableOpacity onPress={ () => {
+                            {item.power < gen.challengeLevel ? item.win=0 : item.win=1};
+                            {item.power < gen.challengeLevel ? updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, item.win) : updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, item.win)};
+                            
+                            { item.win ? props.navigation.navigate("Show", {id: item.id, text:winningQuotes[Math.floor(Math.random() * winningQuotes.length)], scrn: "ADVENTURE_SCREEN"}) : props.navigation.navigate("Show", {id: item.id, text:losingQuotes[Math.floor(Math.random() * losingQuotes.length)], scrn: "ADVENTURE_SCREEN"}) };
+                            }}>
+                            <View style={styles.buttonHero}>
+                            <Text style={styles.buttonDescription}>{item.title} ➻ Hero Level {item.level}{'\n'}{item.currentHP}/{item.maxHP}HP, Power Level {item.power} ➻ {item.gold} Gold</Text>
+                            </View>
+                        </TouchableOpacity>
+                    }}/>
         <NavBar />
     </View>
 }
@@ -89,10 +91,10 @@ const styles = StyleSheet.create({
         borderColor: "#E279A6",
         backgroundColor: "#E279A6",
         //edges of button:
-        borderTopWidth:3,
+        borderTopWidth:5,
         borderTopColor: "#F279A6",
         
-        borderLeftWidth:3,
+        borderLeftWidth:5,
         borderLeftColor:"F279A6",
 
         borderBottomWidth:5,
@@ -126,12 +128,16 @@ const styles = StyleSheet.create({
     body:{
         marginHorizontal:100,
         marginVertical:20,
-        height:75,
-        width: 200,
+        height:80,
+        width: 250,
         backgroundColor:"#E2E96D",
         fontSize:20,
+        //aligns box to middle of screen
+        alignSelf:"center",
+        //align text in box to middle
         alignItems:"center",
         textAlign:"center",
+
         //edges of button:
         borderTopWidth:5,
         borderTopColor: "#E2E96D",

@@ -68,10 +68,10 @@ const styles = StyleSheet.create({
         borderColor: "#E279A6",
         backgroundColor: "#E279A6",
         //edges of button:
-        borderTopWidth:3,
+        borderTopWidth:5,
         borderTopColor: "#F279A6",
         
-        borderLeftWidth:3,
+        borderLeftWidth:5,
         borderLeftColor:"F279A6",
 
         borderBottomWidth:5,
