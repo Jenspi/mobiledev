@@ -18,7 +18,10 @@ const navigator = createStackNavigator({
   {
     initialRouteName: "Index",
     defaultNavigationOptions: {
-      title: "HW3: CRUD Adventures"
+      title: "HW3: CRUD Adventures",
+      headerTitleStyle: {color:'black'},
+      headerStyle: {backgroundColor:'#6C30BE'},
+      headerTintColor: '#6C30BE',
     }
 });
 
