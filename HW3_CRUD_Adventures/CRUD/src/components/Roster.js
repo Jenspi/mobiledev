@@ -1,40 +1,170 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { withNavigation } from "react-navigation";
+import {Context} from "../context/BlogContext";
 
 const Roster = (props) => {
-    return <View>
-            <FlatList
-                data = {state}
-                keyExtractor={(blogPost) => { return blogPost.id }}
-                renderItem={ ({item}) => {
-                    return <TouchableOpacity onPress={ () => {props.navigation.navigate("Show", {id: item.id})}}>
-                                <View style={styles.row}>
-                                    <Text style={styles.title}>Name: {item.title} Level: {item.level} Health: {item.health} Power: {item.power} -- Gold: {item.gold}</Text>
-                                    <TouchableOpacity onPress={() => {deleteBlogPost(item.id)}}>
-                                        <AntDesign style={styles.icon} name="deleteuser"/>
-                                    </TouchableOpacity>
-                                </View>
-                            </TouchableOpacity>
-                }}/>
+    // const [title, setTitle] = useState(props.initialValues.title);
+    // const [content, setContent] = useState(props.initialValues.content);
+    const { state } = useContext(Context);
+
+    console.log(state);
+    const blogID = state.id;
+    console.log(blogID);
+
+    const blogPost = state.find(({hero}) => {
+        return blogID === {hero}.id;
+    })
+
+    //CODE DOESNT WORK
+    
+    return <View style={styles.container}>
+                <Text style={styles.title}>{state.title}</Text>
+                <View style={styles.bodyPink}>
+                    <Text>Hero Level: {state.level}</Text>
+                    <Text>Health: {state.currentHP}/{state.maxHP}</Text>
+                    <Text>Power Level: {state.power}</Text>
+                    <Text>Gold: {state.gold}</Text>
+                </View>
             </View>
 }
 
 const styles = StyleSheet.create({
-    input:{
-        fontSize:18,
-        borderWidth: 1,
-        borderColor: "black",
-        marginBottom: 15,
-        padding: 5,
-        margin: 5
+    /* Color palette:
+    *   "Sweetie Magic: Merge Spell - Game Concept" --- https://color.adobe.com/trends/Game-design
+    *
+    *   #E279A6 --- Pink Carnation (darker pink)
+    *   #F279DE --- Lián Hóng Lotus Pink (lighter pink)
+    *   #6C30BE --- Purple Spot (darker purple)
+    *   #865FD9 --- Gloomy Purple (lighter purple)
+    *   #E2E96D --- Vanilla Pudding (yellow)
+    */
+    container:{
+        flex:1,
+        backgroundColor:"#6C30BE"
     },
-    label: {
+    buttonLevelUp : {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingVertical: 5,
+        paddingHorizontal: 5,
+        borderBottomWidth:3,
+        borderEndWidth: 3,
+        margin:5,
+        borderColor: "#E279A6",
+        backgroundColor: "#E279A6",
+        height:35, 
+        width:200,
+        alignSelf:"center",
+        //edges of button:
+        borderTopWidth:3,
+        borderTopColor: "#F279A6",
+        
+        borderLeftWidth:3,
+        borderLeftColor:"F279A6",
+
+        borderBottomWidth:5,
+        borderBottomColor:"#E2E96D",
+
+        borderEndWidth: 5,
+        borderEndColor:"#E2E96D",
+    },
+    buttonDescription:{
+        fontSize:15,
+        fontStyle: "italic",
+        //flex:1,
+        paddingLeft:5,
+        fontWeight:"bold"
+    },
+    deleteHeroIcon:{
+        fontSize: 25,
+        backgroundColor:"#E2E96D",
+        borderWidth:1,
+        flex:1,
+    },
+    title:{
+        textAlign:"center", 
+        fontSize:30,
+        color:"#E279A6", 
+        textShadowColor:"#E2E96D", 
+        textShadowOffset: {width:2, height:1}, 
+        textShadowRadius:1, 
+        marginVertical:3, 
+        textDecorationLine:"underline",
+    },
+    body:{
+        // marginHorizontal:100,
+        marginVertical:20,
+        height:75,
+        width: 250,
+        backgroundColor:"#E2E96D",
         fontSize:20,
-        marginBottom: 5,
-        marginLeft: 5
+        //alignItems:"center",
+        textAlign:"center",
+        alignSelf:"center",
+        //edges of button:
+        borderTopWidth:5,
+        borderTopColor: "#E2E96D",
+        
+        borderLeftWidth:5,
+        borderLeftColor:"#E2E96D",
+
+        borderBottomWidth:5,
+        borderBottomColor:"#F279A6",
+
+        borderEndWidth: 5,
+        borderEndColor:"#F279A6",
+    },
+    bodyPink:{
+        //marginHorizontal:100,
+        marginVertical:20,
+        height:80,
+        width: 250,
+        backgroundColor:"#F279A6",
+        fontSize:20,
+        //aligns box to middle of screen
+        alignSelf:"center",
+        //align text in box to middle
+        alignItems:"center",
+        //edges of button:
+        borderTopWidth:5,
+        borderTopColor: "#F279A6",
+        
+        borderLeftWidth:5,
+        borderLeftColor:"#F279A6",
+
+        borderBottomWidth:5,
+        borderBottomColor:"#E2E96D",
+
+        borderEndWidth: 5,
+        borderEndColor:"#E2E96D",
+    },
+    disabledButton:{
+        opacity:0,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingVertical: 5,
+        paddingHorizontal: 5,
+        borderBottomWidth:3,
+        borderEndWidth: 3,
+        margin:5,
+        borderColor: "#E279A6",
+        backgroundColor: "#E279A6",
+        height:35, 
+        width:200,
+        alignSelf:"center",
+        //edges of button:
+        borderTopWidth:3,
+        borderTopColor: "#F279A6",
+        
+        borderLeftWidth:3,
+        borderLeftColor:"F279A6",
+
+        borderBottomWidth:5,
+        borderBottomColor:"#E2E96D",
+
+        borderEndWidth: 5,
+        borderEndColor:"#E2E96D",
     }
 });
 
-export default withNavigation(NavBar);
+export default Roster;
