@@ -103,7 +103,7 @@ const blogReducer = (state, action) => {
                             title: action.payload.title,
                             power: action.payload.power,
                             currentHP: action.payload.currentHP - large,
-                            gold: action.payload.gold + small,
+                            gold: action.payload.gold - large,
                             maxHP: action.payload.maxHP,
                             level: action.payload.level
                         }
@@ -121,14 +121,7 @@ const blogReducer = (state, action) => {
 
 const addBlogPost = (dispatch) => {
     return async (title, content, callback) => {
-    //return (title, content) => {
-        // try{
-        //     await axios.post("whatever endpoint", title, content)
             dispatch({type: "add_blogpost", payload:generateNewHero()});
-            //callback();
-        //} catch(e){
-
-        //}
     }
 }
 
@@ -142,7 +135,6 @@ const editBlogPost = (dispatch) => {
     return (id, title, power, currentHP, maxHP, gold, level, callback) => {
         console.log(dispatch);
         dispatch({type: "edit_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level} })
-        //callback();
     }
 }
 
@@ -150,9 +142,8 @@ const updateBlogPost = (dispatch) => {
     return (id, title, power, currentHP, maxHP, gold, level, win, callback) => {
         console.log(dispatch);
         dispatch({type: "update_blogpost", payload: {id:id, title:title, power:power, currentHP:currentHP, maxHP:maxHP, gold:gold, level:level, win:win} })
-        //callback();
     }
 }
 
 //allow other files in our code to access Context and Provider
-export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost, updateBlogPost:updateBlogPost}, [ { id:13, title:"WINNING HERO", level:1, currentHP:100, power:20, gold: 100}, { id:16, title:"LOSING HERO", level:0, currentHP:20, power:0, gold: 20} ]);
+export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost, updateBlogPost:updateBlogPost}, [ { id:13, title:"Winning Hero", power:3, currentHP:100, maxHP:100, power:20, gold: 100, level:1}, { id:16, title:"Losing Hero", currentHP:20, maxHP:20, power:0, gold: 20, level:0} ]);

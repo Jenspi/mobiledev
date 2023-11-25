@@ -1,7 +1,6 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import {Context} from "../context/BlogContext";
-import { FontAwesome } from "@expo/vector-icons";
 import NavBar from "../components/NavBar";
 
 const ShowScreen = (props) => {
@@ -22,7 +21,6 @@ const ShowScreen = (props) => {
     switch(scrn){
         case "INDEX_SCREEN":
                 return <View style={styles.container}>
-                        {/* <Text style={{fontSize:30, paddingBottom: 10}}>Hero Details:</Text> */}
                         <Text style={styles.title}>{blogPost.title}</Text>
                         <View style={styles.bodyPink}>
                             <Text>Hero Level: {blogPost.level}</Text>
