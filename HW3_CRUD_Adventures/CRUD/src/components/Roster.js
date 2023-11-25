@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
-import {Context} from "../context/BlogContext";
+import {Context} from "../context/HeroContext";
 
 const Roster = (props) => {
     // const [title, setTitle] = useState(props.initialValues.title);
@@ -8,11 +8,11 @@ const Roster = (props) => {
     const { state } = useContext(Context);
 
     console.log(state);
-    const blogID = state.id;
-    console.log(blogID);
+    const heroID = state.id;
+    console.log(heroID);
 
-    const blogPost = state.find(({hero}) => {
-        return blogID === {hero}.id;
+    const heroInfo = state.find(({hero}) => {
+        return heroID === {hero}.id;
     })
 
     //CODE DOESNT WORK

@@ -1,42 +1,42 @@
 import React, {useContext} from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import {Context} from "../context/BlogContext";
+import {Context} from "../context/HeroContext";
 import NavBar from "../components/NavBar";
 
 const ShowScreen = (props) => {
-    const { state, editBlogPost } = useContext(Context);
+    const { state, editheroInfo } = useContext(Context);
 
-    const blogID = props.navigation.getParam("id");
+    const heroID = props.navigation.getParam("id");
     const scrn = props.navigation.getParam("scrn");
     const message = props.navigation.getParam("text");
     //console.log(props.navigation);
 
-    const blogPost = state.find((blogPost) => {
-        return blogID === blogPost.id;
+    const heroInfo = state.find((heroInfo) => {
+        return heroID === heroInfo.id;
     })
 
     // console.log(state);
-    // console.log(blogPost);
+    // console.log(heroInfo);
 
     switch(scrn){
         case "INDEX_SCREEN":
                 return <View style={styles.container}>
-                        <Text style={styles.title}>{blogPost.title}</Text>
+                        <Text style={styles.title}>{heroInfo.title}</Text>
                         <View style={styles.bodyPink}>
-                            <Text>Hero Level: {blogPost.level}</Text>
-                            <Text>Health: {blogPost.currentHP}/{blogPost.maxHP}</Text>
-                            <Text>Power Level: {blogPost.power}</Text>
-                            <Text>Gold: {blogPost.gold}</Text>
+                            <Text>Hero Level: {heroInfo.level}</Text>
+                            <Text>Health: {heroInfo.currentHP}/{heroInfo.maxHP}</Text>
+                            <Text>Power Level: {heroInfo.power}</Text>
+                            <Text>Gold: {heroInfo.gold}</Text>
                         </View>
                     
                     <View>
                         
-                        <TouchableOpacity disabled={blogPost.gold >= blogPost.level*10 ? false : true}
-                                            style={blogPost.gold >= blogPost.level*10 ? styles.buttonLevelUp : styles.disabledButton}
+                        <TouchableOpacity disabled={heroInfo.gold >= heroInfo.level*10 ? false : true}
+                                            style={heroInfo.gold >= heroInfo.level*10 ? styles.buttonLevelUp : styles.disabledButton}
                                             onPress={()=>{
-                                            editBlogPost(props.navigation.getParam("id"), blogPost.title, blogPost.power, blogPost.currentHP, blogPost.maxHP, blogPost.gold, blogPost.level);
-                                            console.log(blogPost);}}>
-                                            <Text style={styles.buttonDescription}>LEVEL UP! ({blogPost.level*10} GOLD)</Text>
+                                            editheroInfo(props.navigation.getParam("id"), heroInfo.title, heroInfo.power, heroInfo.currentHP, heroInfo.maxHP, heroInfo.gold, heroInfo.level);
+                                            console.log(heroInfo);}}>
+                                            <Text style={styles.buttonDescription}>LEVEL UP! ({heroInfo.level*10} GOLD)</Text>
                         </TouchableOpacity>
 
                         <NavBar />
@@ -45,22 +45,22 @@ const ShowScreen = (props) => {
     case "ADVENTURE_SCREEN":
         return <View style={styles.container}>
                 <Text style={{paddingVertical: 10, paddingHorizontal:5, color: "white"}}>{message}</Text>
-                <Text style={styles.title}>{blogPost.title}</Text>
+                <Text style={styles.title}>{heroInfo.title}</Text>
                 <View style={styles.bodyPink}>
-                    <Text>Hero Level: {blogPost.level}</Text>
-                    <Text>Health: {blogPost.currentHP}/{blogPost.maxHP}</Text>
-                    <Text>Power Level: {blogPost.power}</Text>
-                    <Text>Gold: {blogPost.gold}</Text>
+                    <Text>Hero Level: {heroInfo.level}</Text>
+                    <Text>Health: {heroInfo.currentHP}/{heroInfo.maxHP}</Text>
+                    <Text>Power Level: {heroInfo.power}</Text>
+                    <Text>Gold: {heroInfo.gold}</Text>
                 </View>
             
                 <View>
                 
-                        <TouchableOpacity disabled={blogPost.gold >= blogPost.level*10 ? false : true}
-                                            style={blogPost.gold >= blogPost.level*10 ? styles.buttonLevelUp : styles.disabledButton}
+                        <TouchableOpacity disabled={heroInfo.gold >= heroInfo.level*10 ? false : true}
+                                            style={heroInfo.gold >= heroInfo.level*10 ? styles.buttonLevelUp : styles.disabledButton}
                                             onPress={()=>{
-                                            editBlogPost(props.navigation.getParam("id"), blogPost.title, blogPost.power, blogPost.currentHP, blogPost.maxHP, blogPost.gold, blogPost.level);
-                                            console.log(blogPost);}}>
-                                            <Text style={styles.buttonDescription}>LEVEL UP! ({blogPost.level*10} GOLD)</Text>
+                                            editheroInfo(props.navigation.getParam("id"), heroInfo.title, heroInfo.power, heroInfo.currentHP, heroInfo.maxHP, heroInfo.gold, heroInfo.level);
+                                            console.log(heroInfo);}}>
+                                            <Text style={styles.buttonDescription}>LEVEL UP! ({heroInfo.level*10} GOLD)</Text>
                         </TouchableOpacity>
 
                 <NavBar />

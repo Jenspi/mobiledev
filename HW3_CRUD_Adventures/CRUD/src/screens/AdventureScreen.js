@@ -1,15 +1,15 @@
 import React, {useContext} from "react";
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
-import {Context} from "../context/BlogContext";
+import {Context} from "../context/HeroContext";
 import NavBar from "../components/NavBar";
 
 const AdventureScreen = (props) => {
-    const { state, updateBlogPost } = useContext(Context);
+    const { state, updateheroInfo } = useContext(Context);
 
-    const blogID = props.navigation.getParam("id");
+    const heroID = props.navigation.getParam("id");
 
-    const blogPost = state.find((blogPost) => {
-        return blogID === blogPost.id;
+    const heroInfo = state.find((heroInfo) => {
+        return heroID === heroInfo.id;
     })
 
     const generateAdventure = () =>{
@@ -44,13 +44,13 @@ const AdventureScreen = (props) => {
 
         <FlatList
             data = {state}
-            keyExtractor={(blogPost) => {return blogPost.title}}
+            keyExtractor={(heroInfo) => {return heroInfo.title}}
             renderItem={ ({item}) => {
                 {/* So dead heroes are not shown */}
                 if(item.currentHP > 0)
                     return <TouchableOpacity onPress={ () => {
                             {item.power < gen.challengeLevel ? item.win=0 : item.win=1};
-                            {item.power < gen.challengeLevel ? updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, item.win) : updateBlogPost(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, item.win)};
+                            {item.power < gen.challengeLevel ? updateheroInfo(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, item.win) : updateheroInfo(item.id, item.title, item.power, item.currentHP, item.maxHP, item.gold, item.level, item.win)};
                             
                             { item.win ? props.navigation.navigate("Show", {id: item.id, text:winningQuotes[Math.floor(Math.random() * winningQuotes.length)], scrn: "ADVENTURE_SCREEN"}) : props.navigation.navigate("Show", {id: item.id, text:losingQuotes[Math.floor(Math.random() * losingQuotes.length)], scrn: "ADVENTURE_SCREEN"}) };
                             }}>
