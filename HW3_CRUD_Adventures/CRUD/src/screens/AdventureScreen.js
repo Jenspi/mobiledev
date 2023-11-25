@@ -14,8 +14,8 @@ const AdventureScreen = (props) => {
 
     const generateAdventure = () =>{
         let adventure = {};
-        const adjectives = ["vengeful", "ill-fated", "tiny", "rotten", "rebellious", "cautious", "probable", "internal", "snotty", "squalid", "unwieldy", "earthy", "furtive", "creepy", "undesirable", "cowardly", "grouchy"];
-        const locations = ["lake", "swamp", "sector", "depths", "mall", "community", "estate", "sanctuary", "purgatory", "library"];
+        const adjectives = ["Vengeful", "Ill-fated", "Tiny", "Rotten", "Rebellious", "Cautious", "Probable", "Internal", "Snotty", "Squalid", "Unwieldy", "Earthy", "Furtive", "Creepy", "Undesirable", "Cowardly", "Grouchy"];
+        const locations = ["Lake", "Swamp", "Sector", "Depths", "Mall", "Community", "Estate", "Sanctuary", "Purgatory", "Library"];
         const qualifiers = ["Unlikeliness", "Improbability", "Doubtfulness", "Possibility", "Probability", "Unlikeliness", "Indecisiveness", "Apparentness"];
 
         adventure.name = "The "+ adjectives[Math.floor(Math.random() * adjectives.length)] + " " +

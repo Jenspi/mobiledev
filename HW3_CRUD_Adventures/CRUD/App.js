@@ -4,15 +4,15 @@ import React from "react";
 import IndexScreen from "./src/screens/IndexScreen";
 import { Provider } from "./src/context/BlogContext";
 import ShowScreen from "./src/screens/ShowScreen";
-import CreateScreen from "./src/screens/CreateScreen";
-import EditScreen from "./src/screens/EditScreen";
+// import CreateScreen from "./src/screens/CreateScreen";
+// import EditScreen from "./src/screens/EditScreen";
 import AdventureScreen from "./src/screens/AdventureScreen";
 
 const navigator = createStackNavigator({
   Index: IndexScreen,
   Show : ShowScreen,
-  Create: CreateScreen,
-  Edit: EditScreen,
+  // Create: CreateScreen,
+  // Edit: EditScreen,
   Adventure: AdventureScreen,
 },
   {
