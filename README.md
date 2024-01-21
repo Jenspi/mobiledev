@@ -1,5 +1,9 @@
 # Running the projects
-Use `npm run` in the terminal and scan the QR code that shows up. You will need the Expo Go app, where this QR code will redirect to.
+#### With the terminal
+Use `npm start` in the terminal and scan the QR code that shows up. You will need the Expo Go app, where this QR code will redirect to.
+
+#### With Android Studio
+Open project in [Android Studio](https://developer.android.com/studio) > add a device in the Device Manager > `npm start` in the Android Studio terminal > press "a" for Android.
 
 # Project Descriptions
 ### [Main Code](https://github.com/Jenspi/mobiledev/tree/main/Main%20code)
