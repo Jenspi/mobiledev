@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     height: 20,
   },
   header: {
-    fontFamily: 'Cochin',
+    fontFamily: 'Roboto',
     color: 'darkcyan',
     backgroundColor: 'darkseagreen',
     fontSize: 40,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   text: {
-    fontFamily: 'Cochin',
+    fontFamily: 'Roboto',
     color: 'darkcyan',
     backgroundColor: 'darkseagreen',
     fontSize: 30,
