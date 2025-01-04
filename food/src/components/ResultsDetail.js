@@ -16,7 +16,8 @@ const ResultsDetail = (props) => {
 const styles = StyleSheet.create({
     image : {
         width: window.width,
-        height: image_height*ratio,
+//        height: image_height*ratio,
+        height: 125,
         borderRadius: 4
     },
     name: {
