@@ -27,21 +27,26 @@ const SearchScreen = () => {
                 {/* <Text>Am I working? {searchTerm}</Text> */}
                 {errorMessage ? <Text>{errorMessage}</Text> : null}
 
+                <Text style={styles.resultText}> {results.length} results found:</Text>
+
                 <ScrollView>
-                    <ResultsList headerText="Budget Options" results={filterResultByPrice("$")}/>
-                    <ResultsList headerText="Pricey Options" results={filterResultByPrice("$$")}/>
-                    <ResultsList headerText="Expensive Options" results={filterResultByPrice("$$$")}/>
+                    <ResultsList headerText="$ Options" results={filterResultByPrice("$")}/>
+                    <ResultsList headerText="$$ Options" results={filterResultByPrice("$$")}/>
+                    <ResultsList headerText="$$$ Options" results={filterResultByPrice("$$$")}/>
                 </ScrollView>
             </View>
 }
 
 const styles = StyleSheet.create({
     container : {
-        borderColor:'red',
-        borderWidth:3,
+//        borderColor:'red',
+//        borderWidth:3,
         flex:1
-    }
-
+    },
+    resultText : {
+        marginLeft:10,
+        color:"grey"
+    },
 });
 
 export default SearchScreen;
