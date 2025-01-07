@@ -34,10 +34,15 @@ const ResultsList = (props) => {
 const styles = StyleSheet.create({
     container: {
         marginBottom:10,
+        marginLeft:15,
+        marginRight: 15,
+//        borderColor:'red',
+//        borderWidth:3,
     },
     title:{
         fontSize:18,
-        fontWeight:"bold"
+        fontWeight:"bold",
+        marginBottom:6,
     },
     
 });
