@@ -31,7 +31,9 @@ const ResultsShowScreen = (props) => {
 const styles = StyleSheet.create({
     image:{
         height:200,
-        width:300
+        width:300,
+//        borderColor:'red',
+//        borderWidth:3,
     }
 });
 
