@@ -15,10 +15,14 @@ const ResultsDetail = (props) => {
 
 const styles = StyleSheet.create({
     image : {
-        width: window.width,
+//        width: window.width,
 //        height: image_height*ratio,
-        height: 125,
-        borderRadius: 4
+        width: 250,
+        height: 200,
+        borderRadius: 4,
+//        borderColor:'red',
+//        borderWidth:3,
+        marginRight:10,
     },
     name: {
         fontWeight: "bold",
