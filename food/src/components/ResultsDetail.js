@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
     image : {
 //        width: window.width,
 //        height: image_height*ratio,
-        width: 250,
-        height: 200,
+        width: 280,
+        height: 140,
         borderRadius: 4,
 //        borderColor:'red',
 //        borderWidth:3,
-        marginRight:10,
+        marginRight:15,
     },
     name: {
         fontWeight: "bold",
