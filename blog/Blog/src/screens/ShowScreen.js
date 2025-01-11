@@ -28,6 +28,8 @@ ShowScreen.navigationOptions = (props) => {
     };
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+});
 
 export default ShowScreen;
