@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
 import {Context} from "../context/BlogContext";
 import { Feather } from "@expo/vector-icons";
@@ -6,12 +6,27 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const IndexScreen = (props) => {
     //useContext gets the data from the passed in context, and stores the data in the repestive variable
-    const {state, deleteBlogPost} = useContext(Context);
+    const {state, deleteBlogPost, getBlogPosts} = useContext(Context);
 
-    return <View>
+    // make code only run once with useEffect hook
+    useEffect( () => {
+        getBlogPosts()
+
+        //listen for new updates
+        const listener = props.navigation.addListener('didFocus', () => {
+            getBlogPosts();
+        });
+
+        //avoid memory leaks
+        return() =>{
+            listener.remove();
+        }
+    }, [])
+
+    return <View style={styles.container}>
         <FlatList
             data = {state}
-            keyExtractor={(blogPost) => {return blogPost.title}}
+            keyExtractor={(blogPost, index) => {return blogPost.title + index}}
             renderItem={ ({item}) => {
                 return <TouchableOpacity onPress={ () => {props.navigation.navigate("Show", {id: item.id})}}>
                             <View style={styles.row}>
@@ -41,16 +56,22 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         paddingVertical: 20,
         paddingHorizontal: 20,
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderColor: "grey",
+        borderWidth: 3,
+        borderColor: 'slategray',
+        borderRadius: 14,
+        backgroundColor: 'steelblue',
+        marginVertical: 1,
     },
     title:{
         fontSize:18,
     },
     icon:{
         fontSize: 24,
-    }
+    },
+    container:{
+        backgroundColor: '#80A2A6',
+        flex:1,
+    },
 });
 
 export default IndexScreen;
