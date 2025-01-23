@@ -1,8 +1,11 @@
 import React, { useReducer } from "react";
 import createDataContext from "./createDataContext";
+import jsonServer from "../api/jsonServer";
 
 const blogReducer = (state, action) => {
     switch(action.type){
+        case "get_blogposts":
+            return action.payload;
         case "add_blogpost":
             return [...state, {
                 id: Math.floor(Math.random() * 9999),
@@ -29,30 +32,42 @@ const blogReducer = (state, action) => {
     }
 }
 
+const getBlogPosts = dispatch =>{
+    // GET method
+    return async () => {
+        const response = await jsonServer.get("/blogposts");
+        // response.data = [ {}, {}, {}, ... ]
+        dispatch({type: "get_blogposts", payload: response.data})
+    }
+}
+
 const addBlogPost = (dispatch) => {
     return async (title, content, callback) => {
-        // try{
-        //     await axios.post("whatever endpoint", title, content)
-            dispatch({type: "add_blogpost", payload:{title:title, content:content}})
-            callback();
-        //} catch(e){
+//        dispatch({type: "add_blogpost", payload:{title:title, content:content}})
 
-        //}
+        // POST instead of GET because we will be adding an object to our json file
+        await jsonServer.post("/blogposts", {title: title, content: content});
+        callback();
     }
 }
 
 const deleteBlogPost = (dispatch) => {
-    return (id) => {
+    return async (id) => {
+        await jsonServer.delete(`/blogposts/${id}`)
         dispatch({type: "delete_blogpost", payload: id})
     }
 }
 
 const editBlogPost = (dispatch) => {
-    return (id, title, content, callback) => {
-        dispatch({type: "edit_blogpost", payload: {id:id, title:title, content:content} })
+    return async (id, title, content, callback) => {
+        await jsonServer.put(`/blogposts/${id}`, {title: title, content: content})
+        dispatch({type: "edit_blogpost", payload: {id:id, title:title, content:content}})
         callback();
     }
 }
 
 //allow other files in our code to access Context and Provider
-export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost}, [ { title:"TESTING TITLE", content:"TEST CONTENT", id:13 } ]);
+export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost, getBlogPosts:getBlogPosts}, [ ]);
+
+//with dummy data for debugging/testing:
+//export const {Context, Provider} = createDataContext(blogReducer, {addBlogPost: addBlogPost, deleteBlogPost: deleteBlogPost, editBlogPost:editBlogPost, getBlogPosts:getBlogPosts}, [ { title:"My first blog post...💗", content:"Hi there, this is my first blog post. I can edit, save, and/or delete posts!", id:13 } ]);
