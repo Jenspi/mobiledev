@@ -28,6 +28,27 @@ Use `npm start` in the terminal and scan the QR code that shows up. You will nee
 #### With Android Studio
 Open project in [Android Studio](https://developer.android.com/studio) > add a device in the Device Manager > `npm start` in the Android Studio terminal > press "a" for Android.
 
+# Common debugging
+
+* <b>ReadableStream not defined:</b>
+```
+ReferenceError: ReadableStream is not defined
+at Object.<anonymous> ...........
+```
+1. Update node to version 18 with the following:
+    1. Install version 16: `nvm install 18`.
+    2. Make your alias: `nvm alias default 18`.
+    3. Verify that `node -v` returns the correct version.
+
+* <b>Permission denied:</b>
+```
+> expo start
+
+sh: ....../node_modules/.bin/expo: Permission denied
+```
+1. Delete the expo file by running the command `cd node_modules/.bin`, then `sudo rm -rf expo`. *(this will not disrupt anything)*
+2. Reinstall npm in the project root, if necessary, with `npm install`.
+
 # Project Descriptions
 
 <br><br>
