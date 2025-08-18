@@ -1,4 +1,7 @@
+# ⏯️ [YouTube Playlist](https://www.youtube.com/playlist?list=PLP778E1KKtqnU2CbDrfC29ElyXJ8sVIdF)
+
 # Installation
+
 Installation slides can be found [here](https://myuno-my.sharepoint.com/:p:/r/personal/jmspicer_uno_edu/Documents/Mobile%20Apps/Lectures/Lecture%201%20-%20Getting%20Everything%20Set%20Up.pptx?d=w9e4fd3609818455fb80f19524effd971&csf=1&web=1&e=P7NIBc).
 
 ## Preqeqs
