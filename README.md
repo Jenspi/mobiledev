@@ -101,7 +101,7 @@ sh: ....../node_modules/.bin/expo: Permission denied
 <p align="center"><img src = "README_images/food_1.png" height = "300" ><img src = "README_images/food_2.png" height = "300" ><img src = "README_images/food_3.png" height = "300" ><p align="right"><i>Yelp! Clone</i></p></p>
 
 ### [Food](https://github.com/Jenspi/mobiledev/tree/main/food)
-→ Following the professor, we used the [Yelp! API](https://docs.developer.yelp.com/docs/fusion-intro) to create a Yelp! clone.
+→ Following the professor, we used the [Yelp! API](https://docs.developer.yelp.com/docs/fusion-intro) to create a Yelp! clone. RESTful API.
 
 ---
 <br><br>
