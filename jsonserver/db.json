@@ -1,19 +1,14 @@
 {
   "blogposts": [
     {
-      "id": 0,
-      "title": "Prepopulated title!",
-      "content": "Prepopulated content!"
+      "id": "fc59",
+      "title": "",
+      "content": ""
     },
     {
-      "id": "3c34",
-      "title": "eheihfknejfjlnwe",
-      "content": " fnjkrdefmnvlk"
-    },
-    {
-        "id": "feef",
-        "title": "HEYYYYY",
-        "content": " HOOOOO"
-      }
+      "id": "a8e8",
+      "title": "Bench press",
+      "content": "3x8"
+    }
   ]
 }
