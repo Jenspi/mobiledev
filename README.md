@@ -1,4 +1,7 @@
+# ⏯️ [YouTube Playlist](https://www.youtube.com/playlist?list=PLP778E1KKtqnU2CbDrfC29ElyXJ8sVIdF)
+
 # Installation
+
 Installation slides can be found [here](https://myuno-my.sharepoint.com/:p:/r/personal/jmspicer_uno_edu/Documents/Mobile%20Apps/Lectures/Lecture%201%20-%20Getting%20Everything%20Set%20Up.pptx?d=w9e4fd3609818455fb80f19524effd971&csf=1&web=1&e=P7NIBc).
 
 ## Preqeqs
@@ -98,7 +101,7 @@ sh: ....../node_modules/.bin/expo: Permission denied
 <p align="center"><img src = "README_images/food_1.png" height = "300" ><img src = "README_images/food_2.png" height = "300" ><img src = "README_images/food_3.png" height = "300" ><p align="right"><i>Yelp! Clone</i></p></p>
 
 ### [Food](https://github.com/Jenspi/mobiledev/tree/main/food)
-→ Following the professor, we used the [Yelp! API](https://docs.developer.yelp.com/docs/fusion-intro) to create a Yelp! clone.
+→ Following the professor, we used the [Yelp! API](https://docs.developer.yelp.com/docs/fusion-intro) to create a Yelp! clone. RESTful API.
 
 ---
 <br><br>
