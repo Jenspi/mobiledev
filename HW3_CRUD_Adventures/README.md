@@ -33,3 +33,20 @@ Open project in [Android Studio](https://developer.android.com/studio) > add a d
 
 ### [HW3](https://github.com/Jenspi/mobiledev/tree/main/HW3_CRUD_Adventures/CRUD)
 → A game closely modeled after our Blog project, which was worked on together in class. Following CRUD, you can **C**reate randomly generated heroes, **R**ead heroes listed in the rosters, **U**pdate by sending heroes to complete missions, and **D**elete heroes with bad rolls or that have died. Individual work.
+
+
+<p align="center"><img src="./crude-heroes-ui.png"><p align="right"><i>Updated UI Color Palette</i></p></p>
+
+### Updated UI (in progress)
+<!-- Why UI improvement is beneficial. Color theory, color psychology, etc. -->
+
+
+#### Low-fidelity prototype
+<!-- img of terrible drawing lol -->
+
+#### Medium-fidelity prototype
+<!-- Figma prototype -->
+[Figma Design (prototype)](https://www.figma.com/proto/PfGrcWth1e8RQxxyZ4JkbJ/CRUDe-Heroes?node-id=73-1197&t=ey8XA5yNhl0sFXWL-1)
+
+#### High-fidelity prototype
+<!--  -->
